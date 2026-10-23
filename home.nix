@@ -23,8 +23,10 @@
   # Git configuration
   programs.git = {
     enable = true;
-    userName = "spdmrf";
-    userEmail = "spdmrf@example.com";  # TODO: Replace with your actual email
+    settings = {
+      user.name = "spdmrf";
+      user.email = "spdmrf@example.com";  # TODO: Replace with your actual email
+    };
   };
 
   # Neovim
