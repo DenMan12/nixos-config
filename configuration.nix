@@ -15,6 +15,9 @@
   # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Allow unfree packages (Steam, etc.)
+  nixpkgs.config.allowUnfree = true;
+
   # Bootloader (placeholder — adjust for your hardware)
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
