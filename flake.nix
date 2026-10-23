@@ -8,14 +8,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    millennium = {
-      url = "github:SteamClientHomebrew/Millennium";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, millennium }: {
+  outputs = { self, nixpkgs, home-manager }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -29,16 +24,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.spdmrf = import ./home.nix;
         }
-
-        # Millennium overlay
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ millennium.overlays.default ];
-        })
       ];
-
-      specialArgs = {
-        inherit millennium;
-      };
     };
   };
 }

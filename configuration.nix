@@ -1,4 +1,4 @@
-{ config, pkgs, millennium, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -37,14 +37,9 @@
   # Enable nix-ld for running non-NixOS binaries
   programs.nix-ld.enable = true;
 
-  # Steam + Millennium
+  # Steam (without Millennium for now)
   programs.steam = {
     enable = true;
-    package = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [
-        millennium
-      ];
-    };
   };
 
   # ArtCraft packages (imported from ./pkgs/artcraft/)
@@ -59,11 +54,11 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    # ArtCraft suite
-    gridcraft
-    wordcraft
-    pdfcraft
-    photocraft
+    # ArtCraft suite (TODO: fix URLs in pkgs/artcraft/*.nix)
+    # gridcraft
+    # wordcraft
+    # pdfcraft
+    # photocraft
 
     # Core utilities
     git
@@ -75,19 +70,19 @@
     btop
 
     # GUI apps
-    obsidian
+    # obsidian  # TODO: verify package name
     qbittorrent
 
     # Terminal tools
-    yazi
+    # yazi  # TODO: verify package name
 
     # Music
     mpd
-    rmpc
+    # rmpc  # TODO: verify package name or use mpc instead
 
     # Other
-    rnote
-    loaf
+    # rnote  # TODO: verify package name
+    # loaf  # TODO: verify package name
   ];
 
   # User account

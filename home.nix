@@ -7,8 +7,8 @@
 
   # Packages specific to this user
   home.packages = with pkgs; [
-    # Browsers
-    zen-browser  # Note: might need to check actual package name in nixpkgs
+    # Browsers (TODO: verify zen-browser exists or use firefox/chromium)
+    # zen-browser
   ];
 
   # Noctalia configuration
