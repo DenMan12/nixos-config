@@ -87,7 +87,7 @@
     btop
 
     # GUI apps
-    obsidian
+    # obsidian  # TODO: fix logo-gradient.svg download error
     qbittorrent
 
     # Terminal tools
