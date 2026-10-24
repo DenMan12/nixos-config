@@ -18,9 +18,11 @@
   # Allow unfree packages (Steam, etc.)
   nixpkgs.config.allowUnfree = true;
 
-  # Bootloader (placeholder — adjust for your hardware)
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Bootloader (Legacy BIOS for Sony VAIO)
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  # boot.loader.systemd-boot.enable = true;  # UEFI only
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -34,8 +36,20 @@
     pulse.enable = true;
   };
 
-  # Niri (Wayland compositor)
-  programs.niri.enable = true;
+  # X Server and bspwm
+  services.xserver = {
+    enable = true;
+    windowManager.bspwm.enable = true;
+
+    # Nouveau driver (open-source, works for GT 425M)
+    videoDrivers = [ "nouveau" ];
+  };
+
+  # Display manager
+  services.displayManager = {
+    defaultSession = "none+bspwm";
+  };
+  services.xserver.displayManager.lightdm.enable = true;
 
   # Enable nix-ld for running non-NixOS binaries
   programs.nix-ld.enable = true;
@@ -73,19 +87,41 @@
     btop
 
     # GUI apps
-    # obsidian  # TODO: verify package name
+    obsidian
     qbittorrent
 
     # Terminal tools
-    # yazi  # TODO: verify package name
+    yazi
 
     # Music
     mpd
-    # rmpc  # TODO: verify package name or use mpc instead
+    rmpc
 
     # Other
-    # rnote  # TODO: verify package name
-    # loaf  # TODO: verify package name
+    rnote
+    # loaf  # Package doesn't exist in nixpkgs
+
+    # bspwm ecosystem
+    bspwm
+    sxhkd
+    polybar
+    rofi
+    dunst
+    picom
+    alacritty
+    feh  # wallpaper setter
+    xsetroot
+    xclip
+    xdotool
+    flameshot  # screenshots
+    redshift  # screen temperature
+
+    # Additional utilities from the rice
+    lsd  # ls replacement
+    ranger  # file manager
+    fish  # shell
+    zathura  # pdf viewer
+    networkmanagerapplet  # network tray icon
   ];
 
   # User account
