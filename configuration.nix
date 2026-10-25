@@ -99,6 +99,7 @@
 
     # Other
     rnote
+    prismlauncher
     # loaf  # Package doesn't exist in nixpkgs
 
     # bspwm ecosystem
